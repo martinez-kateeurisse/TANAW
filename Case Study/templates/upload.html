@@ -16,6 +16,8 @@
             --deped-light-blue: #ADD8E6; /* Light Blue */
             --deped-white: #FFFFFF;
             --deped-gray: #D3D3D3;
+            --deped-success: #28a745; 
+            --deped-error: #dc3545; 
             --text-dark: #333;
             --text-light: #777;
             --box-shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.08);
@@ -829,6 +831,11 @@
                         if (submitButton) {
                             submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading...';
                             submitButton.disabled = true;
+                        
+                setTimeout(() => {
+                    submitButton.innerHTML = 'Upload';
+                    submitButton.disabled = false;
+                }, 3000);
                         }
                     }
                 });
