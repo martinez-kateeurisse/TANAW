@@ -20,6 +20,23 @@ ALLOWED_EXTENSIONS = {'csv'}
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+def save_data():
+    """
+    Implement your data saving logic here.
+    This function is called when the 'Rerun App' button is clicked.
+    You might want to save any uploaded data or modifications to a database or file.
+    """
+    print("Saving data...")
+    # Example: You might save the current dataset path here
+    dataset_path = os.path.join(UPLOAD_FOLDER, 'Cleaned_School_DataSet.csv')
+    if os.path.exists(dataset_path):
+        with open('last_uploaded_dataset.txt', 'w') as f:
+            f.write(dataset_path)
+        print(f"Dataset path saved to last_uploaded_dataset.txt")
+    else:
+        print("No dataset path to save.")
+    # Add other saving mechanisms as needed
+
 @app.route("/")
 def index():
     return render_template("account.html")
@@ -79,7 +96,6 @@ def upload():
 
     return render_template("upload.html", last_updated=last_updated)
 
-# Clean raw dataset and auto-download
 @app.route('/clean', methods=['GET', 'POST'])
 def clean():
     if request.method == 'POST':
@@ -106,9 +122,31 @@ def clean():
 @app.route('/api/enrollment_data')
 def get_enrollment_data():
     file_path = get_dataset_path()
-    data = fetch_enrollment_records_from_csv(file_path)  # Changed this line
+    data = fetch_enrollment_records_from_csv(file_path)
     data = fetch_summary_data_from_csv(file_path)
     return jsonify(data)
+
+@app.route('/rerun_app', methods=['POST'])
+def rerun_app():
+    print("Rerunning the Flask application (simulated).")
+    save_data()
+
+    try:
+        with open(__file__, 'r') as f:
+            content = f.readlines()
+
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        content.append(f"# Triggering auto-reload at {timestamp}\n")
+
+        with open(__file__, 'w') as f:
+            f.writelines(content)
+
+        flash("Your file is uploaded & TANAW is now Reloaded!", 'success')
+
+    except Exception as e:
+        flash(f"Error triggering auto-reload: {str(e)}", "error")
+
+    return redirect(url_for('home'))
 
 # Mount Dash app
 dash_app_works = create_dash_app(app)
@@ -116,3 +154,4 @@ dash_app_report = create_dash_app_report(app)
 
 if __name__ == "__main__":
     app.run(debug=True)
+# Triggering auto-reload at 2025-04-18 20:35:38

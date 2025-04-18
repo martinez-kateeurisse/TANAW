@@ -25,6 +25,7 @@ def fetch_summary_data_from_csv(file_path):
         number_of_schools = df['BEIS School ID'].nunique()
         regions_with_schools = df['Region'].nunique()
         number_of_year_levels = 13  # K to G12
+        
 
         return {
             'totalEnrollments': int(total_enrollments),

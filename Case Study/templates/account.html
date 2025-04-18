@@ -192,28 +192,29 @@
             const successMessageDiv = document.getElementById('successMessage');
             const signInButton = document.getElementById('signInButton');
             const togglePasswordIcon = document.getElementById('togglePassword');
-
+    
             togglePasswordIcon.addEventListener('click', function() {
                 const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
                 passwordInput.setAttribute('type', type);
                 this.classList.toggle('fa-eye');
                 this.classList.toggle('fa-eye-slash');
             });
-
+    
             adminSignInForm.addEventListener('submit', function(event) {
                 event.preventDefault();
                 const firstName = firstNameInput.value;
                 const lastName = lastNameInput.value;
                 const email = emailInput.value;
                 const password = passwordInput.value;
-
+    
                 signInButton.disabled = true;
                 signInButton.textContent = 'Signing In...';
-
+    
                 setTimeout(function() {
                     if (email.endsWith(".edu.ph") && password === "deped123") {
                         localStorage.setItem('firstName', firstName);
                         localStorage.setItem('lastName', lastName);
+                        localStorage.setItem('email', email); // Save the email to localStorage
                         errorMessageDiv.style.display = 'none';
                         successMessageDiv.textContent = "Login Successful!";
                         successMessageDiv.style.display = 'block';
@@ -229,7 +230,7 @@
                     }
                 }, 1200); // Slightly faster simulation
             });
-
+    
             emailInput.focus();
         });
     </script>

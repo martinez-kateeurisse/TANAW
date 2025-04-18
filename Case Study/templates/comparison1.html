@@ -320,15 +320,15 @@
 
         /* Comparison Section Specific Styles */
         #comparison-section {
-             padding: 20px;
+            padding: 20px;
         }
 
         .comparison-container { /* Renamed from geographic-view-container */
-             background-color: var(--deped-white);
-             border-radius: var(--border-radius-md);
-             box-shadow: var(--box-shadow-md);
-             overflow: hidden; /* Important if iframe has specific dimensions */
-             padding: 25px;
+            background-color: var(--deped-white);
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--box-shadow-md);
+            overflow: hidden; /* Important if iframe has specific dimensions */
+            padding: 25px;
         }
 
         /* Styles for the upload form */
@@ -419,12 +419,12 @@
         }
 
         #comparisonFrame { /* Styles for the results iframe */
-             width: 100%;
-             height: 2550px; /* Adjust as needed, maybe make dynamic later */
-             border: none;
-             border-radius: var(--border-radius-sm);
-             box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.1);
-             margin-top: 20px; /* Add some space above the frame */
+            width: 100%;
+            height: 2550px; /* Adjust as needed, maybe make dynamic later */
+            border: none;
+            border-radius: var(--border-radius-sm);
+            box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 20px; /* Add some space above the frame */
         }
 
         /* Back to Top Button */
@@ -463,17 +463,17 @@
             header {
                 padding: 15px;
                 flex-direction: row; /* Ensure logo and nav stay horizontal */
-                 justify-content: space-between; /* Space them out */
+                justify-content: space-between; /* Space them out */
             }
 
             header .logo-area {
-                 align-items: center;
-                 /* flex-grow: 1; Optional: allow logo area to take more space */
+                align-items: center;
+                /* flex-grow: 1; Optional: allow logo area to take more space */
             }
 
              header .logo-area img {
-                 height: 60px; /* Slightly smaller logo */
-                 margin-right: 8px;
+                height: 60px; /* Slightly smaller logo */
+                margin-right: 8px;
             }
 
              header .logo-area h1 {
@@ -482,16 +482,16 @@
             }
 
             nav {
-                 display: none; /* Hide the main navigation on smaller screens */
+                display: none; /* Hide the main navigation on smaller screens */
             }
 
             .header-right {
-                 justify-content: flex-end; /* Move hamburger to the right */
-                 width: auto; /* Don't force width */
+                justify-content: flex-end; /* Move hamburger to the right */
+                width: auto; /* Don't force width */
             }
 
              .hamburger-menu {
-                 display: flex; /* Show the hamburger menu */
+                display: flex; /* Show the hamburger menu */
             }
 
             .account-popup {
@@ -502,31 +502,31 @@
             }
 
              .account-popup h4 {
-                 font-size: 1rem;
-                 margin-bottom: 8px;
+                font-size: 1rem;
+                margin-bottom: 8px;
             }
 
              .account-popup button {
-                 font-size: 0.9rem;
-                 padding: 8px 12px;
-                 margin-bottom: 6px;
+                font-size: 0.9rem;
+                padding: 8px 12px;
+                margin-bottom: 6px;
             }
 
             #comparison-section {
-                 padding: 10px;
+                padding: 10px;
             }
 
             .comparison-container {
-                 padding: 15px;
+                padding: 15px;
             }
 
              .upload-form {
                  padding: 20px;
-            }
+             }
 
             .upload-form label {
                  font-size: 1rem;
-            }
+             }
 
             .upload-form input[type="file"] {
                 max-width: none; /* Allow full width */
@@ -538,7 +538,7 @@
                  padding: 10px 20px;
                  width: 80%; /* Make button wider */
                  justify-content: center; /* Center icon/text */
-            }
+             }
 
             #comparisonFrame {
                  height: 1500px; /* Adjust iframe height for smaller screens */
@@ -546,7 +546,7 @@
 
              footer p {
                  font-size: 0.9rem !important;
-            }
+             }
         }
 
          /* Animations */
@@ -611,9 +611,9 @@
                  <a href="/report" class="back-link"> <i class="fas fa-arrow-left"></i> Back to Main Report</a> </form>
 
             <div class="comparison-results-content">
-                 <iframe id="comparisonFrame" src="" frameborder="0" title="Dataset Comparison Results">
+                <iframe id="comparisonFrame" src="" frameborder="0" title="Dataset Comparison Results">
                      <p>Comparison results will appear here after uploading a file and clicking "Compare Now".</p>
-                 </iframe>
+                </iframe>
             </div>
         </div>
     </section>
@@ -685,6 +685,20 @@
                 }
             });
 
+            // Optional: Add JS for upload form handling if needed
+            // e.g., Show a loading indicator, update iframe src upon successful backend response.
+            // This usually involves more complex interaction with the backend (AJAX/Fetch).
+            // Example: Basic form submission handler (adjust as needed)
+            // if (uploadForm && comparisonFrame) {
+            //     uploadForm.addEventListener('submit', function(event) {
+            //         // event.preventDefault(); // Prevent default if using AJAX
+            //         console.log('Form submitted. Backend will process and load results into the iframe.');
+            //         // Optionally clear the iframe or show a loading message
+            //         // comparisonFrame.src = '/loading-placeholder.html';
+            //         // After backend processes, it should redirect or you use JS to set:
+            //         // comparisonFrame.src = '/path/to/comparison/results';
+            //     });
+            // }
 
         }); // End DOMContentLoaded
 
