@@ -87,7 +87,7 @@ def upload():
 
         if file and allowed_file(file.filename):
             file.save(dataset_path)
-            flash('CSV file uploaded successfully and is now active!')
+            flash('CSV file uploaded successfully. Rerun TANAW to activate it!')
             last_updated = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             return render_template("upload.html", last_updated=last_updated)
 
@@ -141,7 +141,7 @@ def rerun_app():
         with open(__file__, 'w') as f:
             f.writelines(content)
 
-        flash("Your file is uploaded & TANAW is now Reloaded!", 'success')
+        flash("TANAW is now Reloaded!", 'success')
 
     except Exception as e:
         flash(f"Error triggering auto-reload: {str(e)}", "error")
@@ -155,3 +155,8 @@ dash_app_report = create_dash_app_report(app)
 if __name__ == "__main__":
     app.run(debug=True)
 # Triggering auto-reload at 2025-04-18 20:35:38
+# Triggering auto-reload at 2025-04-18 20:47:09
+# Triggering auto-reload at 2025-04-18 20:49:40
+# Triggering auto-reload at 2025-04-18 20:54:15
+# Triggering auto-reload at 2025-04-18 22:30:12
+# Triggering auto-reload at 2025-04-19 00:09:24
