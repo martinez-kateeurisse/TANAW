@@ -18,7 +18,7 @@
             --deped-gray: #D3D3D3;
             --text-dark: #333;
             --text-light: #777;
-            --box-shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.08);
+            --box-shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.1);
             --box-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
             --transition-default: all 0.3s ease-in-out;
             --border-radius-md: 10px;
@@ -296,7 +296,7 @@
         /* Solid KPIs Section */
         #kpis {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 15px;
             margin-bottom: 25px;
             z-index: 1;
@@ -309,7 +309,8 @@
             box-shadow: var(--box-shadow-sm);
             text-align: center;
             transition: var(--transition-default);
-            border-left: 3px solid var(--deped-yellow);
+            border-left: 2.8px solid var(--deped-yellow);
+            border-bottom: 2.8px solid var(--deped-yellow);
             animation: fadeInUp 0.6s ease-out var(--animation-delay) forwards;
             opacity: 0;
             transform: translateY(15px);
@@ -326,6 +327,7 @@
         .kpi-card:nth-child(4) { --animation-delay: 0.8s; }
         .kpi-card:nth-child(5) { --animation-delay: 0.9s; }
         .kpi-card:nth-child(6) { --animation-delay: 1.0s; }
+        .kpi-card:nth-child(7) { --animation-delay: 1.1s; }
 
         .kpi-card:hover {
             transform: translateY(-2px);
@@ -333,7 +335,8 @@
         }
 
         .kpi-card h3 {
-            font-size: 1.2rem;
+            font-size: 1.0rem;
+            margin-top: 0em;
             margin-bottom: 0.4em;
         }
 
@@ -348,17 +351,19 @@
         }
 
         .kpi-card .data-value {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 600;
+            margin: 0px;
         }
 
         .kpi-card .visualization-container {
-            margin-top: 10px;
+            margin-top: 8px;
             width: 80%;
             max-width: 200px;
             display: flex;
             justify-content: center;
             align-items: center;
+            gap: 15px;
         }
 
         .single-value-visual {
@@ -542,6 +547,67 @@
     </div>
 
     <section id="kpis">
+        <div id="totalEnrollments" class="kpi-card"> <!--KPI Total Enrollments -->
+            <div class="visualization-container">
+                <i class="fas fa-users" style="font-size: 3.5em; color: var(--deped-blue);"></i>
+                <div>
+                    <div class="loading-spinner"></div>
+                        <p class="data-value"></p>
+                    <h3>Total Enrolled</h3>   
+                </div>
+            </div>
+        </div> 
+
+        <div id="numberOfRegions" class="kpi-card"> <!--KPI Number of Regions -->
+            <div class="visualization-container">
+                <i class="fas fa-map-marker-alt" style="font-size: 3.5em; color: var(--deped-blue);"></i>
+                <div>
+                    <div class="loading-spinner"></div>
+                    <p class="data-value">
+                        <span id="regionsValue"></span>
+                    </p>
+                    <h3>Regions</h3>               
+                </div>
+            </div>
+        </div>
+
+        <div id="numberOfSchools" class="kpi-card"> <!--KPI Number of Schools -->
+            <div class="visualization-container">
+                <i class="fas fa-school" style="font-size: 3.5em; color: var(--deped-blue);"></i>
+                <div>
+                    <div class="loading-spinner"></div>
+                        <p class="data-value">
+                            <span id="schoolsValue"></span>
+                        </p>
+                        <h3>Schools</h3>
+                    </div>    
+                </div>
+            </div>
+        </div>
+
+        <div id="numberOfYearLevels" class="kpi-card"> <!--KPI Number of Year Levels -->
+            <div class="visualization-container">
+                <i class="fas fa-layer-group" style="font-size: 3.5em; color: var(--deped-blue)"></i>
+                <div>
+                    <div class="loading-spinner"></div>
+                        <p class="data-value">
+                            <span id="yearLevelsValue"></span>
+                        </p>
+                        <h3>Year Levels</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="genderEnrollmentChartCard" class="kpi-card"> <!--KPI Gender Enrollment Bar -->
+            <h3><i class="fas fa-venus-mars"></i> Enrollment by Gender</h3>
+            <div class="loading-spinner"></div>
+            <div class="visualization-container">
+                <canvas id="genderEnrollmentChart"></canvas>
+            </div>
+            <p class="data-value"></p>
+        </div>
+
         <div id="maleEnrollments" class="kpi-card">
             <h3><i class="fas fa-male"></i> Male</h3>
             <div class="loading-spinner"></div>
@@ -550,52 +616,11 @@
             </div>
             <p class="data-value"></p>
         </div>
-        <div id="totalEnrollments" class="kpi-card">
-            <h3><i class="fas fa-users"></i> Total Enrollment</h3>
-            <div class="loading-spinner"></div>
-            <div class="visualization-container">
-                <canvas id="totalEnrollmentChart"></canvas>
-            </div>
-            <p class="data-value"></p>
-        </div>
         <div id="femaleEnrollments" class="kpi-card">
             <h3><i class="fas fa-female"></i> Female</h3>
             <div class="loading-spinner"></div>
             <div class="visualization-container">
                 <canvas id="femaleChart"></canvas>
-            </div>
-            <p class="data-value"></p>
-        </div>
-        <div id="numberOfRegions" class="kpi-card">
-            <h3><i class="fas fa-map"></i> No. of Regions</h3>
-            <div class="loading-spinner"></div>
-            <div class="visualization-container">
-                <div class="single-value-visual">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span id="regionsValue"></span>
-                </div>
-            </div>
-            <p class="data-value"></p>
-        </div>
-        <div id="numberOfSchools" class="kpi-card">
-            <h3><i class="fas fa-school"></i> No. of Schools</h3>
-            <div class="loading-spinner"></div>
-            <div class="visualization-container">
-                <div class="single-value-visual">
-                    <i class="fas fa-university"></i>
-                    <span id="schoolsValue"></span>
-                </div>
-            </div>
-            <p class="data-value"></p>
-        </div>
-        <div id="numberOfYearLevels" class="kpi-card">
-            <h3><i class="fas fa-layer-group"></i> No. of Year Levels</h3>
-            <div class="loading-spinner"></div>
-            <div class="visualization-container">
-                <div class="single-value-visual">
-                    <i class="fas fa-list-ol"></i>
-                    <span id="yearLevelsValue"></span>
-                </div>
             </div>
             <p class="data-value"></p>
         </div>
@@ -670,12 +695,15 @@
                 }
             }
 
-            // Total Enrollments Bar Chart (Comparing Male and Female)
+            
+            // Total Enrollments KPI 
             const totalEnrollmentsDiv = document.getElementById('totalEnrollments');
             totalEnrollmentsDiv.querySelector('.data-value').textContent = data.totalEnrollments ? data.totalEnrollments.toLocaleString() : 'N/A';
-            const ctxTotal = document.getElementById('totalEnrollmentChart')?.getContext('2d');
-            if (ctxTotal) {
-                new Chart(ctxTotal, {
+        
+            // Total Enrollments Bar Chart (Comparing Male and Female)
+            const ctxGender = document.getElementById('genderEnrollmentChart')?.getContext('2d');
+            if (ctxGender) {
+                new Chart(ctxGender, {
                     type: 'bar',
                     data: {
                         labels: ['Male', 'Female'],
@@ -687,10 +715,16 @@
                         }]
                     },
                     options: {
+                        indexAxis: 'y', // 🔁 Horizontal bar chart
                         responsive: true,
                         maintainAspectRatio: false,
-                        scales: { y: { beginAtZero: true } },
-                        plugins: { legend: { display: false }, title: { display: true, text: 'Total Enrollment by Gender' } },
+                        scales: {
+                            x: { beginAtZero: true }
+                        },
+                        plugins: {
+                            legend: { display: false },
+                            title: { display: true, text: 'Total Enrollment by Gender' }
+                        },
                         interaction: {
                             mode: 'index',
                             intersect: false,
